@@ -56,3 +56,16 @@ Deno.test('Bubble Sort: given [5,1,5] it returns the array [1,5,5]', () => {
 
     assertEquals(expected, actual)
 })
+
+
+Deno.test('Bubble Sort: given [1,6,3,4,2,8,5,7] it returns the array [1,2,3,4,5,6,7,8]', () => {
+    const input: number[] = [1,6,3,4,2,8,5,7]
+    const expected: number[] = [1,2,3,4,5,6,7,8];
+
+    const actual = bubbleSort(input)
+
+    console.log(input)
+    console.log(expected,`\n`, actual)
+
+    assertEquals(expected, actual)
+})
