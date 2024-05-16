@@ -58,7 +58,7 @@ Deno.test('Bubble Sort: given [5,1,5] it returns the array [1,5,5]', () => {
 })
 
 
-Deno.test('Bubble Sort: given [1,6,3,4,2,8,5,7] it returns the array [1,2,3,4,5,6,7,8]', () => {
+Deno.test.only('Bubble Sort: given [1,6,3,4,2,8,5,7] it returns the array [1,2,3,4,5,6,7,8]', () => {
     const input: number[] = [1,6,3,4,2,8,5,7]
     const expected: number[] = [1,2,3,4,5,6,7,8];
 
