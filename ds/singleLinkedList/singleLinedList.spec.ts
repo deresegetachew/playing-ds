@@ -13,7 +13,7 @@ Deno.test(
 );
 
 Deno.test(
-  "SingleLinkedList: a node in SingleLinedList should have value and the next node",
+  "SingleLinkedList: a node in SingleLinkedList should have value and the next node ",
   () => {
     const node = new Node(1);
 
@@ -21,6 +21,7 @@ Deno.test(
     assertEquals(node.next, null);
   },
 );
+
 
 Deno.test(
   "SingleLinkedList: the head.next element should point to node2",
@@ -37,7 +38,7 @@ Deno.test(
 );
 
 Deno.test(
-  "SingleLinkedList: the head element should be the last element inserted",
+  "SingleLinkedList: the head element should be the last element inserted ",
   () => {
     const LL = new SingleLinkedList();
 

@@ -35,6 +35,18 @@ export class SingleLinkedList<T> {
     return this;
   }
 
+  public insertNodeAtTail(node: Node<T>) {
+    if(this.tail){
+      this.tail.next = node
+    }
+    else
+    {
+      this.head = node
+      this.tail = node
+    }
+
+  }
+
   public popFirstNode() {
     if(!this.head) return null;
     const firstNode = {...this.head} as Node<T>;
