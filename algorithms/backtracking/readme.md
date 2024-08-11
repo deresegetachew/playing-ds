@@ -2,10 +2,6 @@
 
 usually backtracking questions or algorithms are categorized as :
 
-Question to ask when doing backtracking:
-
-  - does order matter ?
-
 
   - Permutations
     - order matters in permutations
@@ -19,6 +15,10 @@ Question to ask when doing backtracking:
 
   ![Types of backtracking solutions/problems](../../.assets/backtracking_algo.png)
 
+
+Question to ask when doing backtracking:
+
+  - does order matter ? if it does use combination otherwise permutation
 
 recursion:
 
