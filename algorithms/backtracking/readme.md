@@ -2,14 +2,22 @@
 
 usually backtracking questions or algorithms are categorized as :
 
-- Permutations
-  - order matters in permutations
-  - This questions can be either exhaustive searches or true backtracking
+Question to ask when doing backtracking:
 
-- Combinations / Subsets
-  - order does not matter
+  - does order matter ?
 
-![Types of backtracking solutions/problems](../../.assets/backtracking_algo.png)
+
+  - Permutations
+    - order matters in permutations
+    - This questions can be either exhaustive searches or true backtracking
+    - usually uses for loop
+
+  - Combinations / Subsets
+    - order does not matter
+    - all possible selections of a subset from a set of elements
+    - use include/exclude approach
+
+  ![Types of backtracking solutions/problems](../../.assets/backtracking_algo.png)
 
 
 recursion:

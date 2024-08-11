@@ -1,0 +1,23 @@
+function canMakesum(values, target){
+    if(values.length === 0)
+    return false
+}
+
+
+const checkSum(choices, target) {
+        if(target === 0)
+            return true
+        else if(choices.length === 0 || target < 0) 
+            return false;
+
+        const val =  choices[0]
+        choices = choices.slice(0+1) // rmoving the choosen element
+        if(checkSum(choices,target) || checkSum(target-val, choices)){
+            choices.unshift(val)
+            return true
+        }
+        else {
+            choices.unshift(val)
+            return false
+        }
+}
