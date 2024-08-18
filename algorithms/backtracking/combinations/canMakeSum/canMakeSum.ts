@@ -14,9 +14,10 @@ function checkSum(choices: number[], target: number): boolean {
     else if(choices.length === 0 || target < 0) 
         return false;
 
+    // choose 
     const chosen_val =  choices[0]
 
-    choices = choices.slice(0+1) // removing the chosen element
+    choices = choices.slice(1) // removing the chosen element
     
     if(checkSum(choices,target) || checkSum(choices,target - chosen_val)){
         choices.unshift(chosen_val)
