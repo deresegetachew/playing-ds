@@ -149,7 +149,7 @@ When to Use:
 | **Representation**    | **Storage Complexity** | **Edge Lookup Complexity** | **Iteration Complexity** | **When to Use**                          |
 |------------------------|-------------------------|-----------------------------|---------------------------|------------------------------------------|
 | **Adjacency List**     | O(V + E)               | O(V)                        | O(V + E)                  | Best for sparse graphs with many vertices but few edges. |
-| **Adjacency Matrix**   | O(V²)                  | O(1)                        | O(V²)                     | Best for dense graphs with frequent edge lookups.         |
+| **Adjacency Matrix**   | O(V²)                  | O(1)                        | O(V²)                     | Best for dense graphs (where the number of edges is close to V²) with frequent edge lookups.          |
 | **Edge List**          | O(E)                   | O(E)                        | O(E)                      | Best for algorithms that work directly on edges (e.g., Kruskal's). |
 
 
@@ -161,3 +161,18 @@ When to Use:
 | **Edge Removal**         | O(V)                              | O(1)                            | O(E)                          |
 | **Node Removal**         | O(V + E)                          | O(V²)                           | O(E)                          |
 | **Best Use Case**        | Sparse graphs                     | Dense graphs                    | Edge-centric operations        |
+
+
+traversals and complexities ???
+
+time complexity : O(V + E)
+space complexity: O(n)
+
+might not be accurate but check the table below
+
+
+| **Graph Representation** | **Traversal Method** | **Time Complexity**  | **Space Complexity** |
+|---------------------------|----------------------|-----------------------|-----------------------|
+| **Adjacency List**        | DFS / BFS           | O(V + E)             | O(V + E)             |
+| **Adjacency Matrix**      | DFS / BFS           | O(V²)                | O(V²)                |
+| **Edge List**             | DFS / BFS           | O(V + E)             | O(E) + O(V)          |
