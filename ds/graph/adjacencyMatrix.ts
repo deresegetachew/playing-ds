@@ -39,7 +39,7 @@ export class AdjacencyMatrix {
         const visited = new Set<number>()
         const queue: number[] = [node]
 
-        while(queue.length > 1){
+        while(queue.length > 0){
             const node = queue.shift()!
 
             if(!visited.has(node)){

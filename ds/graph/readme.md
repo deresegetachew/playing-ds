@@ -13,6 +13,7 @@ Terminologies:
 
 **Path:**  a sequence of nodes connected by edges
 
+
 ## Graph Types
 
 - Direct vs Undirected:
@@ -192,3 +193,11 @@ https://www.geeksforgeeks.org/difference-between-bfs-and-dfs/
 |     Approach used     |                                                               It works on the concept of FIFO (First In First Out).                                                                |                                                                                   It works on the concept of LIFO (Last In First Out).                                                                                   |   |   |
 |     Suitable for      |                                                      BFS is more suitable for searching vertices closer to the given source.                                                       |                                                                             DFS is more suitable when there are solutions away from source.                                                                              |   |   |
 |     Applications      | BFS is used in various applications such as bipartite graphs, shortest paths, etc. If weight of every edge is same, then BFS gives shortest pat from source to every other vertex. | DFS is used in various applications such as acyclic graphs and finding strongly connected components etc. There are many applications where both BFS and DFS can be used like Topological Sorting, Cycle Detection, etc. |   |   |
+
+
+
+### Note To Self:
+graph traversal algorithms are designed to follow paths between connected nodes based on the relationships encoded in the matrix.
+even though we represent them as 2D matrixes we are not just going cell by cell we are navigating though the relations thats why something like BFS makes sense and we dont need to go cell by cell.
+
+so when solving Graph problems understand the relations
