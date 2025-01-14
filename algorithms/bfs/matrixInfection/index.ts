@@ -1,93 +1,112 @@
 
-type TCell = {
-    row: number,
-    col: number
+type TCell = {row:number, col: number}
+type TAdjCells = {
+    top:TCell
+    right:TCell
+    bottom: TCell
+    left: TCell
 }
-
 
 export class MatrixInfection {
 
-    private infectedCellQueue: TCell[] = []
-    private unInfectedCells: TCell[] = [] 
+    private  colCount: number = 0;
+    private  rowCount: number = 0;
+    private secondCount: number = 0
+
+    private infectedCellsQueue: TCell[] = []
+    private unInfectedCells: TCell[] = []
+
+
 
     constructor(private readonly matrix: number[][]){
     }
 
-    timeToInfectUninfectedCells(): number {
-
+    timeToInfectUninfectedCells(){
         if(this.matrix.length === 0 || this.matrix.find((m) => m.length === 0))
             return -1
-        else{
 
-           const rowLength = this.matrix.length
-           const colLength = this.matrix[0].length
-           
-          
-
-           let secondCount = 0;
+        this.rowCount = this.matrix.length
+        this.colCount = this.matrix[0].length
 
 
-           for(let row=0; row < rowLength; row++){
-            for(let col=0; col < colLength; col++){
-                if(this.isCellInfected(row, col)){
-                    this.infectedCellQueue.push({row,col})
-                }
-                if(this.isCellUnInfected(row, col)) {
-                    this.unInfectedCells.push({row, col})
-                }
+        for(let i=0; i<this.rowCount; i++){
+            for(let j=0; j < this.colCount; j++){
+                const cell = {row:i,col:j}
+                if(this.isCellInfected(cell))
+                    this.infectedCellsQueue.push(cell)
+
+                if(this.isCellUninfected(cell))
+                    this.unInfectedCells.push(cell)
             }
-           }
+        }
 
-           while(this.infectedCellQueue.length  > 0 && this.unInfectedCells.length > 0){
+
+        while(this.infectedCellsQueue.length > 0 && this.unInfectedCells.length > 0){
+
+            //for how many nodes are we gone do bfs
             // number of nodes at this level, this is how we do level order traversal
             // we are taking a snapshot of the queue size at this point in time and thats how we do level order traversal
-            const size = this.infectedCellQueue.length 
-
-            secondCount++;
+            const size = this.infectedCellsQueue.length;
+            this.secondCount++
 
             // we are not even using index anywhere
-            for (let index = 0; index < size; index++) {
-                const {row, col} = this.infectedCellQueue.shift()!;
-
-                this.infectAdjCells(row, col)
-            }
-           }
-          
-           if(this.unInfectedCells.length > 0) return -1
-           else return secondCount
-           
+            for(let index=0; index < size; index++){
+                const cell = this.infectedCellsQueue.shift()!
+                this.infectAdjCells(cell)
+            }   
         }
+        
+
+        if(this.unInfectedCells.length > 0) return -1
+        return this.secondCount
+
+
     }
 
-    private infectAdjCells(row: number, col: number){
-        const adjCells = {
-            up: {x: row, y: col-1},
-            down: {x: row, y: col+1},
-            left: {x: row-1, y: col},
-            right: {x: row+1, y: col}
+    infectAdjCells(cell: TCell) {
+        // bfs
+        const adjCells:TAdjCells = {
+            top: { col: cell.col+1, row: cell.row},
+            right: {col: cell.col, row: cell.row+1},
+            bottom: {col: cell.col-1, row: cell.row},
+            left: {col: cell.col, row: cell.row-1}
         }
 
-            for(const [_, values] of Object.entries(adjCells)){
-                if(this.isWithInMatrixBound(values.x, values.y)){
-                    if(this.unInfectedCells.find((c) => c.row === values.x && c.col === values.y)){
-                            this.infectedCellQueue.push({row: values.x, col: values.y})
-                            this.unInfectedCells = this.unInfectedCells.filter((c) => !(c.row === values.x && c.col === values.y))
-                    }
+        for (const [_, value] of Object.entries(adjCells)) {
+            if(this.isWithInBound(value)){
+                if(this.isCellUninfected(value)){
+                    this.infectedCellsQueue.push(value)
+                    this.unInfectedCells = this.unInfectedCells.filter((c) => !(c.row === value.row && c.col === value.col))
                 }
             }
+        }
+
+
+
     }
 
-    private isCellInfected(x: number, y: number){
-        return this.matrix[x][y] === 2
+    isCellInfected({row, col}: TCell) {
+        return this.matrix[row][col] === 2
     }
 
-    private isCellUnInfected(x: number, y: number){
-        return this.matrix[x][y] === 1
+    isCellUninfected({row, col}: TCell) {
+        return this.matrix[row][col] === 1
     }
 
-    private isWithInMatrixBound(x: number, y: number){
-        if(x < 0 || x >= this.matrix.length || y < 0 || y >  this.matrix[0].length)
-            return false
-        return true
+    isWithInBound({row, col}: TCell) {
+        return !(row < 0 || row >= this.matrix.length || col < 0 || col >= this.matrix[0].length)
     }
+
 }
+
+// steps:
+
+// first find infected cell
+
+// find adjacent cells and infect
+
+// find adj of adj cells and infect those as well
+
+// level order traversal and count the levels as seconds 
+
+// BFS of adj cells
